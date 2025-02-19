@@ -1,0 +1,11 @@
+.book-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://img.freepik.com/free-photo/paper-sheet-table_1101-47.jpg?ga=GA1.1.1277716210.1739910517&semt=ais_hybrid");
+    background-size: cover;
+    background-position: center;
+    background-attachment:fixed;
+}
+.book-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
