@@ -13,7 +13,7 @@
   }
   
   /* Modal Window */
-  .modal {
+  .modal-overlay .modal {
     background-color: rgb(228, 227, 227);
     padding: 20px;
     border-radius: 8px;

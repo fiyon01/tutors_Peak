@@ -32,7 +32,6 @@ import axios from "axios";
     return <div className="text-white">Event not found. Please try again.</div>;
   }
 
-
   const addStudent = () => {
     const newStudent = {
       id: students.length + 1,
