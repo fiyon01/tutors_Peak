@@ -8,9 +8,20 @@ const routes = require("./routes/registrationRoutes");
 dotenv.config();
 const app = express();
 
-// Middlewares
+const allowedOrigins = [
+  'https://peakperformancetutoring.vercel.app',
+  'http://localhost:3000', // Add your local development URL
+];
+
 app.use(cors({
-  origin:"https://peakperformancetutoring.vercel.app/",
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) { // Fixed: Added the missing ')'
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Block the request
+    }
+  },
+  credentials: true, // Enable if you need to send cookies
 }));
 app.use(express.json());
 app.use(morgan("combined"));
