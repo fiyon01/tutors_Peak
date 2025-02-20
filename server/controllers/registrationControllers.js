@@ -1,12 +1,21 @@
 const pool = require("../db");
 
 const tuitionBooking = (req, res) => {
-    const { students, parentDetails, totalPrice } = req.body;
-    const { name, phone } = parentDetails;
+    const { students, parentDetails } = req.body;
+    
+    if (!parentDetails || !parentDetails.name || !parentDetails.phone) {
+        return res.status(400).send({ message: "Parent details are required" });
+    }
+
+    if (!students.length) {
+        return res.status(400).send({ message: "No students provided" });
+    }
+
+    const { name, phone,email } = parentDetails;
 
     // Check if parent already exists based on the phone number
-    const parentQuery = "SELECT id FROM parents WHERE phone = ?";
-    pool.query(parentQuery, [phone], (err, results) => {
+    const parentQuery = "SELECT id FROM parents WHERE phone = ? OR name = ?";
+    pool.query(parentQuery, [phone,name], (err, results) => {
         if (err) {
             console.log(err);
             return res.status(500).send({ message: "Error in database query" });
@@ -25,22 +34,14 @@ const tuitionBooking = (req, res) => {
                     console.log(err);
                     return res.status(500).send({ message: "Error inserting students" });
                 }
-
-                // Insert one payment for the parent, not for each student
-                const paymentQuery = "INSERT INTO payments (amount, parent_id) VALUES (?, ?)";
-                pool.query(paymentQuery, [totalPrice, parentId], (err, paymentResult) => {
-                    if (err) {
-                        console.log(err);
-                        return res.status(500).send({ message: "Error inserting payment" });
-                    }
                     return res.status(201).json({ message: "Created successfully" });
-                });
+                
             });
 
         } else {
             // Parent does not exist, insert parent and students
-            const insertParentQuery = "INSERT INTO parents (name, phone) VALUES (?, ?)";
-            pool.query(insertParentQuery, [name, phone], (err, result) => {
+            const insertParentQuery = "INSERT INTO parents (name, phone,email) VALUES (?, ?,?)";
+            pool.query(insertParentQuery, [name, phone,email], (err, result) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).send({ message: "Error inserting parent" });
@@ -55,16 +56,8 @@ const tuitionBooking = (req, res) => {
                         console.log(err);
                         return res.status(500).send({ message: "Error inserting students" });
                     }
-
-                    // Insert one payment for the parent
-                    const paymentQuery = "INSERT INTO payments (amount, parent_id) VALUES (?, ?)";
-                    pool.query(paymentQuery, [totalPrice, parentId], (err, paymentResult) => {
-                        if (err) {
-                            console.log(err);
-                            return res.status(500).send({ message: "Error inserting payment" });
-                        }
-                        return res.status(201).send({ message: "Parent and students added successfully", data: studentResult });
-                    });
+                       return res.status(201).send({ message: "Parent and students added successfully", data: studentResult });
+                    
                 });
             });
         }
