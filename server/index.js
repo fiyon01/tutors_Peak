@@ -9,7 +9,9 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin:"https://peakperformancetutoring.vercel.app/",
+}));
 app.use(express.json());
 app.use(morgan("combined"));
 app.use("/api", routes);

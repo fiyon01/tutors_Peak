@@ -76,7 +76,7 @@ import axios from "axios";
   
     try {
       // Make sure to send POST request with data in the body
-      const response = await axios.post("http://localhost:3500/api/registration", {
+      const response = await axios.post("https://tutors-peak-server.vercel.app/api/registration", {
         parentDetails,
         students,
         totalPrice,
@@ -116,7 +116,7 @@ import axios from "axios";
   
       try {
         // Call your payment service API
-        const response = await axios.post("http://localhost:3500/api/stk", {
+        const response = await axios.post("https://tutors-peak-server.vercel.app/api/stk", {
           phoneNumber: newPhoneNumber,
           Amount: totalPrice,
         });
