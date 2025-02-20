@@ -10,12 +10,13 @@ const app = express();
 
 const allowedOrigins = [
   'https://peakperformancetutoring.vercel.app',
-  'http://localhost:3000', // Add your local development URL
+  'http://localhost:5173',
+  'http://localhost:3500', // Add this origin
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) { // Fixed: Added the missing ')'
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true); // Allow the request
     } else {
       callback(new Error('Not allowed by CORS')); // Block the request
@@ -23,6 +24,8 @@ app.use(cors({
   },
   credentials: true, // Enable if you need to send cookies
 }));
+
+
 app.use(express.json());
 app.use(morgan("combined"));
 app.use("/api", routes);
