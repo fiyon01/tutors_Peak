@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const mysql = require("mysql2");
+const axios = require("axios")
 const dotenv = require("dotenv");
 const routes = require("./routes/registrationRoutes");
 
@@ -29,6 +30,8 @@ app.use(cors({
 app.use(express.json());
 app.use(morgan("combined"));
 app.use("/api", routes);
+
+
 
 // The serverless function handler
 app.listen(3500,()=>{
