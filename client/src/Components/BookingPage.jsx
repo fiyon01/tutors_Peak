@@ -113,7 +113,7 @@ import axios from "axios";
       return;
     } else {
       setInputError(""); // Clear any previous errors
-  
+           console.log(typeof(totalPrice))
       try {
         // Call your payment service API
         const response = await axios.post("https://tutors-peak-server.vercel.app/api/stk", {
