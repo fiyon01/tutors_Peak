@@ -19,7 +19,7 @@ function Home() {
     const fetchProgrammes = async () => {
       try {
         const response = await axios.get(
-          "https://tutors-peak-server.vercel.app/pi/fetchprograms"
+          "https://tutors-peak-server.vercel.app/api/fetchprograms"
         );
         if (response.status === 200) {
           setPrograms(response.data); // Correctly update the state
