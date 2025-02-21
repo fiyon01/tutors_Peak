@@ -16,13 +16,13 @@ const EventModal = ({ program, closeModal }) => {
   return (
     <div className="overlay">
       <div className="modal sm:w-48 bg-gray-800 text-white overflow-y-auto overflow-x-hidden rounded-lg">
-        <img className="rounded-lg" src={program.image} alt={program.title} />
-        <h3 className="mt-4 text-2xl font-sans font-semibold">{program.title}</h3>
+        <img className="rounded-lg" src={program.image_url} alt={program.name} />
+        <h3 className="mt-4 text-2xl font-sans font-semibold">{program.name}</h3>
         <div className="mt-4 flex justify-between items-center">
           <div className="flex flex-col">
             <div className="flex items-center mt-3">
               <Calendar className="text-white mr-2" />
-              <h4 className="text-white text-base text-center">{program.date}</h4>
+              <h4 className="text-white text-base text-center">{program.start_date}</h4>
             </div>
             <div className="flex items-center mt-3">
               <MapPin className="text-white mr-2" />
@@ -30,7 +30,7 @@ const EventModal = ({ program, closeModal }) => {
             </div>
             <div className="flex items-center mt-3">
               <Book className="text-white mr-2" />
-              <h4 className="text-white text-base text-center">{program.subject}</h4>
+              <h4 className="text-white text-base text-center">{program.name}</h4>
             </div>
             <div className="flex items-center mt-3">
               <Book className="text-white mr-2" />
