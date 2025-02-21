@@ -18,9 +18,7 @@ function Home() {
   useEffect(() => {
     const fetchProgrammes = async () => {
       try {
-        const response = await axios.get(
-          "https://tutors-peak-server.vercel.app/api/fetchprograms"
-        );
+        const response = await axios.get("https://tutors-peak-server.vercel.app/api/programs");
         if (response.status === 200) {
           setPrograms(response.data); // Correctly update the state
           console.log(response.data);
@@ -33,9 +31,10 @@ function Home() {
         setLoading(false);
       }
     };
-
+  
     fetchProgrammes();
   }, []);
+  
   const openModal = (program) => {
     setIsModalOpen(true);
     setSelectedProgram(program);
