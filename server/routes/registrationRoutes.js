@@ -1,5 +1,9 @@
 const dotenv =require("dotenv");
 const axios = require("axios");
+const express = require("express")
+const registrationControllers = require("../controllers/registrationControllers")
+const paymentControllers = require("../controllers/paymentControllers")
+const router = express.Router();
 dotenv.config();
 
 const generateToken = async (req, res, next) => {
@@ -32,10 +36,7 @@ const generateToken = async (req, res, next) => {
       res.status(500).send({ message: 'Error generating token', error: error.message });
   }
 };
-const express = require("express")
-const registrationControllers = require("../controllers/registrationControllers")
-const paymentControllers = require("../controllers/paymentControllers")
-const router = express.Router();
+
 
 router.post("/registration",registrationControllers.tuitionBooking)
 router.get("/fetchprograms",registrationControllers.fetchPrograms)
