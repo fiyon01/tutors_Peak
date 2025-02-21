@@ -40,6 +40,6 @@ const generateToken = async (req, res, next) => {
 
 router.post("/registration",registrationControllers.tuitionBooking)
 router.get("/fetchprograms",registrationControllers.fetchPrograms)
-router.post("/stk",generateToken,paymentControllers.handlePayment)
+router.post("/stk",generateToken,registrationControllers.handlePayment);
 
 module.exports = router
