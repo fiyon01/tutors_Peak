@@ -15,9 +15,7 @@
     height: 500px ;
     padding: 10px ;
   }
-  .modal img{
-    width:400px;
-  }
+ 
   
   /* Custom Scrollbar Styling */
   .modal::-webkit-scrollbar {

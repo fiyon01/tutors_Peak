@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { Calendar, MapPin,Book } from "lucide-react";
+import { Calendar, MapPin,Book,Banknote } from "lucide-react";
 import "./modals.css"
 Modal.setAppElement("#root");
 
@@ -16,7 +16,7 @@ const EventModal = ({ program, closeModal }) => {
   return (
     <div className="overlay">
       <div className="modal sm:w-48 bg-gray-800 text-white overflow-y-auto overflow-x-hidden rounded-lg">
-        <img className="rounded-lg" src={program.image_url} alt={program.name} />
+        <img className="rounded-lg w-full" src={program.image_url} alt={program.name} />
         <h3 className="mt-4 text-2xl font-sans font-semibold">{program.name}</h3>
         <div className="mt-4 flex justify-between items-center">
           <div className="flex flex-col">
@@ -29,12 +29,12 @@ const EventModal = ({ program, closeModal }) => {
               <h4 className="text-white text-base text-center">{program.location}</h4>
             </div>
             <div className="flex items-center mt-3">
-              <Book className="text-white mr-2" />
+              <Banknote className="text-white mr-2" />
               <h4 className="text-white text-base text-center">{program.name}</h4>
             </div>
             <div className="flex items-center mt-3">
-              <Book className="text-white mr-2" />
-              <h4 className="text-white text-base text-center">{program.Weekly_fee}</h4>
+              <Banknote className="text-white mr-2" />
+              <h4 className="text-white text-base text-center">{program.weekly_fee}</h4>
             </div>
             <div className="flex items-center mt-3">
               <Book className="text-white mr-2" />
