@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import axios from "axios"
 import Navbar from "./Navbar";
 import EventModal from "./EventModal";
 import Hero from "./Hero";
@@ -7,60 +8,34 @@ import Features from "./Features";
 import Stats from "./Stats";
 import Footer from "./Footer";
 
-const programs = [
-    {
-      id:"1",
-      title: "Advanced Mathematics Masterclass",
-      image:
-        "https://images.unsplash.com/photo-1596496050827-8299e0220de1?ixlib=rb-4.0.3",
-      date: "June 15, 2024",
-      time: "2:00 PM - 4:00 PM",
-      location: "Main Campus, Room 204",
-      subject: "Mathematics",
-      Weekly_fee:"900",
-      registration_fee:"1",
-    },
-    {
-      id:"2",
-      title: "Science Lab Workshop",
-      image:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3",
-      date: "June 18, 2024",
-      time: "3:00 PM - 5:00 PM",
-      location: "Science Building, Lab 101",
-      subject: "Science",
-      Weekly_fee:"900",
-      registration_fee:"1",
-    },
-    {
-      id:"3",
-      title: "English Literature Discussion",
-      image:
-        "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-4.0.3",
-      date: "June 20, 2024",
-      time: "1:00 PM - 3:00 PM",
-      location: "Library Hall",
-      subject: "English",
-      Weekly_fee:"900",
-      registration_fee:"1",
-    },
-    {
-      id:"4",
-      title: "SAT Prep Course",
-      image:
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3",
-      date: "June 22, 2024",
-      time: "10:00 AM - 12:00 PM",
-      location: "Study Center, Room 305",
-      subject: "Test Prep",
-      Weekly_fee:"900",
-      registration_fee:"1",
-    },
-  ];
+
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState("");
+  const [programs, setPrograms] = useState([]); // Initialize as an empty array
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchProgrammes = async () => {
+      try {
+        const response = await axios.get(
+          "https://tutors-peak-server.vercel.app/api/fetchprograms"
+        );
+        if (response.status === 200) {
+          setPrograms(response.data); // Correctly update the state
+          console.log(response.data);
+        } else {
+          console.log(response.error);
+        }
+      } catch (error) {
+        console.error("Error fetching programs", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProgrammes();
+  }, []);
   const openModal = (program) => {
     setIsModalOpen(true);
     setSelectedProgram(program);

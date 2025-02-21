@@ -3,30 +3,9 @@ import axios from "axios";
 import ProgramCard from "./ProgramCard";
 
 const ProgramsList = ({ openModal }) => {
-  const [programs, setPrograms] = useState([]); // Initialize as an empty array
-  const [loading, setLoading] = useState(true);
+  
 
-  useEffect(() => {
-    const fetchProgrammes = async () => {
-      try {
-        const response = await axios.get(
-          "https://tutors-peak-server.vercel.app/api/fetchprograms"
-        );
-        if (response.status === 200) {
-          setPrograms(response.data); // Correctly update the state
-          console.log(response.data);
-        } else {
-          console.log(response.error);
-        }
-      } catch (error) {
-        console.error("Error fetching programs", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchProgrammes();
-  }, []);
 
   if (loading) {
     return <div>Loading...</div>; // Show loading spinner while fetching data
