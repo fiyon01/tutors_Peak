@@ -141,8 +141,6 @@ import axios from "axios";
           // Close the payment prompt modal
           setIsPaymentPromptVisible(false);
           
-          // Display success message
-          alert("Payment prompt sent to: " + newPhoneNumber);
           
         } else {
           console.log("Payment request failed:", response.message);
