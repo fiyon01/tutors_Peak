@@ -59,14 +59,14 @@ function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {programs.map((program) => (
             <div key={program.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src={program.image} alt={program.title} className="w-full h-48 object-cover" />
+      <img src={program.image_url} alt={program.name} className="w-full h-48 object-cover" />
       <div className="p-4">
         <span className="text-sm font-medium text-blue-600 mb-2 block">{program.subject}</span>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">{program.title}</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">{program.name}</h3>
         <div className="space-y-2 mb-4">
           <div className="flex items-center text-gray-600">
             <Calendar className="h-4 w-4 mr-2" />
-            <span className="text-sm">{program.date}</span>
+            <span className="text-sm">{program.start_date}</span>
           </div>
           <div className="flex items-center text-gray-600">
             <Clock className="h-4 w-4 mr-2" />
